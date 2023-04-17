@@ -1,6 +1,8 @@
 from typing import List
 
 import torch
+import itertools
+from typing import Dict, List, Optional
 import pandas as pd
 from tqdm import tqdm
 from torch.utils.data import Dataset, DataLoader
@@ -23,24 +25,35 @@ def load_data(filename, tokenizer):
 
 
 class SentimentDataset(Dataset):
-    def __init__(self, inputs, polarities):
+    def __init__(self, inputs: Dict[str, torch.Tensor], polarities: Optional[List[int]]):
         self.inputs = inputs
-        self.polarities = torch.tensor(polarities, dtype=torch.long)
+        if polarities is not None:
+            self.polarities = torch.tensor(polarities, dtype=torch.long)
+        else:
+            self.polarities = None
 
     def __len__(self):
         return len(self.polarities)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
         item = {key: val[idx] for key, val in self.inputs.items()}
-        item['labels'] = self.polarities[idx]
+        if self.polarities is not None:
+            item['labels'] = self.polarities[idx]
         return item
 
 
-def create_data_loader(inputs, polarities, batch_size=16):
-    polarity_mapping = {'positive': 1, 'negative': 0, 'neutral': 2}
-    polarities = [polarity_mapping[p] for p in polarities]
+def create_data_loader(inputs: Dict[str, torch.Tensor], polarities: Optional[List[int]] = None, batch_size: int = 16) -> DataLoader:
+    if polarities is None:
+        polarities = [0] * len(inputs["input_ids"])
+    
     dataset = SentimentDataset(inputs, polarities)
-    return DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    return DataLoader(dataset, batch_size=batch_size)
+
+
+def create_data_loader_without_labels(inputs, batch_size=16):
+    dataset = SentimentDataset(inputs, None)
+    return DataLoader(dataset, batch_size=batch_size, shuffle=False)
+
 
 class SentimentClassifier(torch.nn.Module):
     def __init__(self, base_model):
@@ -57,7 +70,7 @@ class Classifier:
         self.tokenizer = AutoTokenizer.from_pretrained(base_model)
         self.label_encoder = LabelEncoder()
 
-    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 3):
+    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 1):
         # Put the model on the specified device
         self.model.to(device)
 
@@ -65,26 +78,33 @@ class Classifier:
         train_inputs, train_polarities = load_data(train_filename, self.tokenizer)
         dev_inputs, dev_polarities = load_data(dev_filename, self.tokenizer)
 
+        # Transform polarities using label_encoder
+        train_polarities_transformed = self.label_encoder.fit_transform(train_polarities)
+        dev_polarities_transformed = self.label_encoder.transform(dev_polarities)
+
         # Create DataLoaders
-        train_loader = create_data_loader(train_inputs, train_polarities, batch_size=16)
-        dev_loader = create_data_loader(dev_inputs, dev_polarities, batch_size=16)
+        train_loader = create_data_loader(train_inputs, train_polarities_transformed, batch_size=16)
+        dev_loader = create_data_loader(dev_inputs, dev_polarities_transformed, batch_size=16)
 
         # Set optimizer and loss function
         optimizer = optim.Adam(self.model.parameters(), lr=1e-5)
         loss_function = torch.nn.CrossEntropyLoss()
 
         # Training and evaluation
+        n_batches_to_run = 1
         for epoch in range(epochs):
             self.model.train()
-            for batch in tqdm(train_loader):
+            loss_list = []
+            for batch in tqdm(itertools.islice(train_loader, n_batches_to_run)):
                 optimizer.zero_grad()
                 inputs = {key: val.to(device) for key, val in batch.items() if key != 'labels'}
                 labels = batch['labels'].to(device)
-                # Updated line to pass input_ids and attention_mask directly
                 outputs = self.model(input_ids=batch["input_ids"].to(device), attention_mask=batch["attention_mask"].to(device), labels=labels)
                 loss = outputs.loss
+                loss_list.append(loss)
                 loss.backward()
                 optimizer.step()
+            loss_mean = sum(loss_list)/len(loss_list)
 
             self.model.eval()
             dev_preds, dev_true = [], []
@@ -99,14 +119,14 @@ class Classifier:
                     dev_true.extend(labels.cpu().tolist())
 
             dev_accuracy = accuracy_score(dev_true, dev_preds)
-            print(f'Epoch: {epoch + 1}, Dev Accuracy: {dev_accuracy:.4f}')
+            print(f'Epoch: {epoch + 1},Loss: {loss_mean:.4f}, Dev Accuracy: {dev_accuracy:.4f}')
 
-    def predict(self, data_filename: str, device: torch.device) -> List[str]:
+    def predict(self, datafile: str, device: str) -> List[int]:
         # Put the model on the specified device
         self.model.to(device)
 
-        data_inputs, data_polarities = load_data(data_filename, self.tokenizer)
-        data_loader = create_data_loader(data_inputs, data_polarities, batch_size=16)
+        data_inputs, _ = load_data(datafile, self.tokenizer)
+        data_loader = create_data_loader(data_inputs, None, batch_size=16)
 
         self.model.eval()
         preds = []
@@ -119,4 +139,3 @@ class Classifier:
                 preds.extend(predictions)
 
         return self.label_encoder.inverse_transform(preds)
-
