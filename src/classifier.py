@@ -1,7 +1,6 @@
 from typing import List
 
 import torch
-import itertools
 from typing import Dict, List, Optional
 import pandas as pd
 from tqdm import tqdm
@@ -70,7 +69,7 @@ class Classifier:
         self.tokenizer = AutoTokenizer.from_pretrained(base_model)
         self.label_encoder = LabelEncoder()
 
-    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 1):
+    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 10):
         # Put the model on the specified device
         self.model.to(device)
 
@@ -91,11 +90,10 @@ class Classifier:
         loss_function = torch.nn.CrossEntropyLoss()
 
         # Training and evaluation
-        n_batches_to_run = 1
         for epoch in range(epochs):
             self.model.train()
             loss_list = []
-            for batch in tqdm(itertools.islice(train_loader, n_batches_to_run)):
+            for batch in tqdm(train_loader):
                 optimizer.zero_grad()
                 inputs = {key: val.to(device) for key, val in batch.items() if key != 'labels'}
                 labels = batch['labels'].to(device)
