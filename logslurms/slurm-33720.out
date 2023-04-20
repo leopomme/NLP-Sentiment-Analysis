@@ -1,0 +1,38 @@
+Copying the source directory...
+Directory copied !
+Loaded config: {'method': 'bayes', 'metric': {'goal': 'maximize', 'name': 'dev_accuracy'}, 'parameters': {'EPOCHS': {'values': [5, 10, 15]}, 'LEARNING_RATE': {'max': 0.0001, 'min': 1e-07}}}
+Create sweep with ID: haaq4ko1
+Sweep URL: https://wandb.ai/leo-adri/nlp-sa/sweeps/haaq4ko1
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.7766
+Epoch: 2, Dev Accuracy: 0.8457
+Epoch: 3, Dev Accuracy: 0.8537
+Epoch: 4, Dev Accuracy: 0.8298
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Epoch: 5, Dev Accuracy: 0.8032
+  %s.2. Eval on the dev set... Acc.: 9.31
+Dev accs: [9.31]
+Test accs: [-1]
+Mean Dev Acc.: 9.31 (0.00)
+Mean Test Acc.: -1.00 (0.00)
+
+Exec time: 815.47 s. ( 163 per run )
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.8298
+Epoch: 2, Dev Accuracy: 0.8005
+Epoch: 3, Dev Accuracy: 0.8404

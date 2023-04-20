@@ -1,5 +1,7 @@
 from typing import List
+import os
 
+import wandb
 import torch
 import pandas as pd
 from tqdm import tqdm
@@ -57,12 +59,16 @@ class Classifier:
         self.tokenizer = AutoTokenizer.from_pretrained(base_model)
         self.label_encoder = LabelEncoder()
 
-    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 3):
+    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 3, lr: float = 1e-5):
         # Put the model on the specified device
         self.model.to(device)
 
         # Load data
-        train_inputs, train_polarities = load_data(train_filename, self.tokenizer)
+        print("CURRENT POSITION is : ", os.getcwd())
+        print("Looking for : ", os.getcwd()+"/"+ train_filename)
+        train_inputs, train_polarities = load_data( os.getcwd()+"/"+ train_filename, self.tokenizer)
+        self.label_encoder.fit(train_polarities)
+
         dev_inputs, dev_polarities = load_data(dev_filename, self.tokenizer)
 
         # Create DataLoaders
@@ -70,7 +76,7 @@ class Classifier:
         dev_loader = create_data_loader(dev_inputs, dev_polarities, batch_size=16)
 
         # Set optimizer and loss function
-        optimizer = optim.Adam(self.model.parameters(), lr=1e-5)
+        optimizer = optim.Adam(self.model.parameters(), lr=lr)
         loss_function = torch.nn.CrossEntropyLoss()
 
         # Training and evaluation
@@ -99,6 +105,10 @@ class Classifier:
                     dev_true.extend(labels.cpu().tolist())
 
             dev_accuracy = accuracy_score(dev_true, dev_preds)
+            wandb.log({
+                'epoch': epoch, 
+                'dev_accuracy': dev_accuracy,
+            })
             print(f'Epoch: {epoch + 1}, Dev Accuracy: {dev_accuracy:.4f}')
 
     def predict(self, data_filename: str, device: torch.device) -> List[str]:

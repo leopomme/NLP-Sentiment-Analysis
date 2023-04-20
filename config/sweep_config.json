@@ -1,0 +1,8 @@
+{
+    "method": "bayes",
+    "metric": { "goal": "maximize", "name": "dev_accuracy" },
+    "parameters": {
+      "EPOCHS": { "values": [5,10,15] },
+      "LEARNING_RATE": {"max": 1e-4, "min": 1e-7}
+    }
+  }

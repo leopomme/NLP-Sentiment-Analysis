@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#SBATCH --job-name=condaEnvSetup
+#SBATCH --nodes=1
+#SBATCH --partition=gpu_prod_long
+#SBATCH --time=1:00:00
+#SBATCH --output=logsenv/slurm-%j.out
+#SBATCH --error=logsenv/slurm-%j.err
+
+# Load the conda module
+export PATH=/opt/conda/bin:$PATH
+
+# Create conda environment 
+# and prevent the use of system site-package
+# that will interfer with the conda env
+export PYTHONNOUSERSITE=1
+conda remove --name nlp --all
+# Create the environment using python 3.9
+conda create --name nlp python=3.9 --force
+
+# Activate the environment
+source activate nlp
+
+# Install the required libraries from a requirement file, using pypi
+pip install -r requirements.txt 
+# You can also trigger "conda install ..." commands
+echo "Finished !"
