@@ -1,7 +1,6 @@
 from typing import List
 import os
 
-import wandb
 import torch
 import pandas as pd
 from tqdm import tqdm
@@ -59,9 +58,13 @@ class Classifier:
         self.tokenizer = AutoTokenizer.from_pretrained(base_model)
         self.label_encoder = LabelEncoder()
 
-    def train(self, train_filename: str, dev_filename: str, device: torch.device, epochs: int = 3, lr: float = 1e-5):
+    def train(self, train_filename: str, dev_filename: str, device: torch.device):
         # Put the model on the specified device
         self.model.to(device)
+
+        # Hyperparameters
+        epochs = 9
+        lr = 0.00003
 
         # Load data
         print("CURRENT POSITION is : ", os.getcwd())
@@ -105,10 +108,6 @@ class Classifier:
                     dev_true.extend(labels.cpu().tolist())
 
             dev_accuracy = accuracy_score(dev_true, dev_preds)
-            wandb.log({
-                'epoch': epoch, 
-                'dev_accuracy': dev_accuracy,
-            })
             print(f'Epoch: {epoch + 1}, Dev Accuracy: {dev_accuracy:.4f}')
 
     def predict(self, data_filename: str, device: torch.device) -> List[str]:

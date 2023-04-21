@@ -9,6 +9,9 @@ import torch
 
 from classifier import Classifier
 
+"""
+    Modified tester file to train and evaluate the classifier with wandb.
+"""
 
 def get_wandb_config(path):
     with open(path, 'r') as f:
@@ -121,7 +124,7 @@ if __name__ == "__main__":
     if SWEEP:
         sweep_config = get_wandb_config('config/sweep_config.json')
         sweep_id = wandb.sweep( sweep=sweep_config, project='nlp-sa')
-        wandb.agent(sweep_id, function=launch_sweep, count=50)
+        wandb.agent(sweep_id, function=launch_sweep, count=25)
     else:
         lr = 1e-5
         epochs = 2

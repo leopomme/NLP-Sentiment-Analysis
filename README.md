@@ -1,6 +1,9 @@
-# NLP-Sentiment-Analysis
-Sentiment Analysis Classifier
------------------------------
+# <center><span style="color:navy">NLP-Sentiment-Analysis</span></center>
+<br>
+<p align="center">
+  <strong><em>Sentiment Analysis Classifier</em></strong>
+</p>
+<p align="center">By Leopold Herbert-Stevens and Adrien Loizeau</p>
 
 This classifier is designed to perform sentiment analysis on a given dataset. It uses the Hugging Face Transformers library to leverage pre-trained language models for fine-tuning on the sentiment classification task.
 
@@ -28,7 +31,8 @@ The classifier leverages the following resources:
 
 Workflow:
 ---------
-1. Load the data from the CSV files (train, dev, and test datasets).
+The workflow is the following:
+1. We load the data from the CSV files (train, dev, and test datasets).
 
 2. Tokenize the sentences using the selected pre-trained model's tokenizer (e.g., BERT).
 
@@ -40,6 +44,16 @@ Workflow:
 
 6. Calculate and display the accuracy scores for dev and test datasets.
 
+Accuracy on the dev dataset:
+----------------------------
+To found the best hyperparameters for our model, performed a grid search on many the number of epochs and the learning rate. We found that the best hyperparameters were 15 epochs and a learning rate of 0.000078. The accuracy on the dev dataset was 0.86. The following graph shows the different results for each hyperparameter combination. 
+![Hyperparameter search](src/images/grid_search.png)
+
+Bellow is the accuracy plot for the best hyperparameters. Our final best model is in purple.
+![Accuracy plot](src/images/accuracy_plot.png)
+
+
+
 Usage:
 ------
 1. Make sure all required libraries are installed.
@@ -50,19 +64,10 @@ Usage:
 
 Improvements:
 -------------
-There are several ways to potentially improve the performance of the sentiment analysis classifier:
+There are several ways th potentially improve the performance of the sentiment analysis classifier:
 
-1. Hyperparameter tuning: Experiment with different learning rates, batch sizes, and the number of training epochs to find the optimal combination for the task. Grid search or random search can be used to systematically explore different hyperparameter configurations.
+1. Model architecture: Try other pre-trained models like RoBERTa, DistilBERT, or ALBERT to see if they yield better performance on the sentiment analysis task. To switch models, simply change the 'base_model' parameter during the Classifier object creation.
 
-2. Model architecture: Try other pre-trained models like RoBERTa, DistilBERT, or ALBERT to see if they yield better performance on the sentiment analysis task. To switch models, simply change the 'base_model' parameter during the Classifier object creation.
+2. Additional pre-processing: Investigate more advanced pre-processing techniques such as text normalization, stopword removal, and lemmatization to reduce noise in the input data and potentially improve the classifier's performance.
 
-3. Additional pre-processing: Investigate more advanced pre-processing techniques such as text normalization, stopword removal, and lemmatization to reduce noise in the input data and potentially improve the classifier's performance.
-
-4. Aspect-based features: Incorporate the aspect terms in the input sentences as additional features to help the model better understand the context of the sentiment.
-
-5. Data augmentation: Use techniques like synonym replacement, random deletion, random insertion, or random swapping to increase the size of the training dataset, which might help improve the model's generalization capabilities.
-
-6. Transfer learning: Fine-tune the model on a large-scale sentiment analysis dataset before fine-tuning it on the target task. This can help the model learn better representations for sentiment analysis tasks in general, potentially leading to improved performance on the specific task.
-
-7. Ensemble methods: Train multiple models with different architectures or training configurations and combine their predictions using techniques like voting, bagging, or stacking to potentially achieve higher accuracy.
-
+Thank you for reading. 

@@ -1,0 +1,12 @@
+Copying the source directory...
+Directory copied !
+
+RUN: 1
+  1.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-34075/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-34075/NLP-Sentiment-Analysis/../data/traindata.csv
+sending incremental file list
+
+sent 18 bytes  received 12 bytes  60.00 bytes/sec
+total size is 0  speedup is 0.00
+Finished !

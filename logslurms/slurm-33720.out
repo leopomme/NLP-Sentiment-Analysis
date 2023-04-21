@@ -36,3 +36,149 @@ Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
 Epoch: 1, Dev Accuracy: 0.8298
 Epoch: 2, Dev Accuracy: 0.8005
 Epoch: 3, Dev Accuracy: 0.8404
+Epoch: 4, Dev Accuracy: 0.8112
+Epoch: 5, Dev Accuracy: 0.8191
+Epoch: 6, Dev Accuracy: 0.8112
+Epoch: 7, Dev Accuracy: 0.8324
+Epoch: 8, Dev Accuracy: 0.8404
+Epoch: 9, Dev Accuracy: 0.8218
+Epoch: 10, Dev Accuracy: 0.8165
+Epoch: 11, Dev Accuracy: 0.8112
+Epoch: 12, Dev Accuracy: 0.8271
+Epoch: 13, Dev Accuracy: 0.8298
+Epoch: 14, Dev Accuracy: 0.8271
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Epoch: 15, Dev Accuracy: 0.8165
+  %s.2. Eval on the dev set... Acc.: 13.03
+Dev accs: [13.03]
+Test accs: [-1]
+Mean Dev Acc.: 13.03 (0.00)
+Mean Test Acc.: -1.00 (0.00)
+
+Exec time: 2425.05 s. ( 485 per run )
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.8218
+Epoch: 2, Dev Accuracy: 0.8511
+Epoch: 3, Dev Accuracy: 0.8484
+Epoch: 4, Dev Accuracy: 0.8404
+Epoch: 5, Dev Accuracy: 0.8378
+Epoch: 6, Dev Accuracy: 0.8298
+Epoch: 7, Dev Accuracy: 0.8298
+Epoch: 8, Dev Accuracy: 0.8298
+Epoch: 9, Dev Accuracy: 0.8271
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Epoch: 10, Dev Accuracy: 0.8378
+  %s.2. Eval on the dev set... Acc.: 11.70
+Dev accs: [11.7]
+Test accs: [-1]
+Mean Dev Acc.: 11.70 (0.00)
+Mean Test Acc.: -1.00 (0.00)
+
+Exec time: 1624.05 s. ( 324 per run )
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.8112
+Epoch: 2, Dev Accuracy: 0.8351
+Epoch: 3, Dev Accuracy: 0.8324
+Epoch: 4, Dev Accuracy: 0.8245
+Epoch: 5, Dev Accuracy: 0.8245
+Epoch: 6, Dev Accuracy: 0.8245
+Epoch: 7, Dev Accuracy: 0.8298
+Epoch: 8, Dev Accuracy: 0.8032
+Epoch: 9, Dev Accuracy: 0.8378
+Epoch: 10, Dev Accuracy: 0.8218
+Epoch: 11, Dev Accuracy: 0.8324
+Epoch: 12, Dev Accuracy: 0.8324
+Epoch: 13, Dev Accuracy: 0.8351
+Epoch: 14, Dev Accuracy: 0.8351
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Epoch: 15, Dev Accuracy: 0.8218
+  %s.2. Eval on the dev set... Acc.: 11.17
+Dev accs: [11.17]
+Test accs: [-1]
+Mean Dev Acc.: 11.17 (0.00)
+Mean Test Acc.: -1.00 (0.00)
+
+Exec time: 2433.38 s. ( 486 per run )
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.8298
+Epoch: 2, Dev Accuracy: 0.8537
+Epoch: 3, Dev Accuracy: 0.8271
+Epoch: 4, Dev Accuracy: 0.8112
+Epoch: 5, Dev Accuracy: 0.8351
+Epoch: 6, Dev Accuracy: 0.8378
+Epoch: 7, Dev Accuracy: 0.8431
+Epoch: 8, Dev Accuracy: 0.8378
+Epoch: 9, Dev Accuracy: 0.8351
+Epoch: 10, Dev Accuracy: 0.8351
+Epoch: 11, Dev Accuracy: 0.8298
+Epoch: 12, Dev Accuracy: 0.8112
+Epoch: 13, Dev Accuracy: 0.8324
+Epoch: 14, Dev Accuracy: 0.8298
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Epoch: 15, Dev Accuracy: 0.8378
+  %s.2. Eval on the dev set... Acc.: 9.57
+Dev accs: [9.57]
+Test accs: [-1]
+Mean Dev Acc.: 9.57 (0.00)
+Mean Test Acc.: -1.00 (0.00)
+
+Exec time: 2415.79 s. ( 483 per run )
+  %s.1. Training the classifier...
+CURRENT POSITION is :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis
+Looking for :  /tmp/loizeaua-33720/NLP-Sentiment-Analysis/data/traindata.csv
+Epoch: 1, Dev Accuracy: 0.8298
+Epoch: 2, Dev Accuracy: 0.8351
+Epoch: 3, Dev Accuracy: 0.8005
+Epoch: 4, Dev Accuracy: 0.8457
+Epoch: 5, Dev Accuracy: 0.8298
+Epoch: 6, Dev Accuracy: 0.8617
