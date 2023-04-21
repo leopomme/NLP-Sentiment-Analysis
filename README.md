@@ -49,7 +49,7 @@ Accuracy on the dev dataset:
 To found the best hyperparameters for our model, performed a grid search on many the number of epochs and the learning rate. We found that the best hyperparameters were 15 epochs and a learning rate of 0.000078. The accuracy on the dev dataset was 0.86. The following graph shows the different results for each hyperparameter combination. 
 ![Hyperparameter search](src/images/grid_search.png)
 
-Bellow is the accuracy plot for the best hyperparameters. Our final best model is in purple.
+Bellow is the accuracy plot for the best hyperparameters. Our final best model is in red dotted line.
 ![Accuracy plot](src/images/accuracy_plot.png)
 
 
